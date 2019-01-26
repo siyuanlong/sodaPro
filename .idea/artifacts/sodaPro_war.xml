@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="sodaPro:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="sodaPro.war">
+      <element id="artifact" artifact-name="sodaPro:war exploded" />
+    </root>
+  </artifact>
+</component>

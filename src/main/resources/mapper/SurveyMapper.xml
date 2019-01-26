@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.SurveyMapper">
+  <resultMap id="BaseResultMap" type="com.bean.Survey">
+    <id column="sy_id" jdbcType="INTEGER" property="syId" />
+    <result column="sy_title" jdbcType="VARCHAR" property="syTitle" />
+    <result column="sy_content" jdbcType="VARCHAR" property="syContent" />
+    <result column="sy_userId" jdbcType="INTEGER" property="syUserid" />
+    <result column="sy_type" jdbcType="INTEGER" property="syType" />
+    <result column="sy_status" jdbcType="INTEGER" property="syStatus" />
+    <result column="sy_other1" jdbcType="VARCHAR" property="syOther1" />
+    <result column="sy_other2" jdbcType="VARCHAR" property="syOther2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sy_id, sy_title, sy_content, sy_userId, sy_type, sy_status, sy_other1, sy_other2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from survey
+    where sy_id = #{syId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from survey
+    where sy_id = #{syId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bean.Survey">
+    insert into survey (sy_id, sy_title, sy_content, 
+      sy_userId, sy_type, sy_status, 
+      sy_other1, sy_other2)
+    values (#{syId,jdbcType=INTEGER}, #{syTitle,jdbcType=VARCHAR}, #{syContent,jdbcType=VARCHAR}, 
+      #{syUserid,jdbcType=INTEGER}, #{syType,jdbcType=INTEGER}, #{syStatus,jdbcType=INTEGER}, 
+      #{syOther1,jdbcType=VARCHAR}, #{syOther2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bean.Survey">
+    insert into survey
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="syId != null">
+        sy_id,
+      </if>
+      <if test="syTitle != null">
+        sy_title,
+      </if>
+      <if test="syContent != null">
+        sy_content,
+      </if>
+      <if test="syUserid != null">
+        sy_userId,
+      </if>
+      <if test="syType != null">
+        sy_type,
+      </if>
+      <if test="syStatus != null">
+        sy_status,
+      </if>
+      <if test="syOther1 != null">
+        sy_other1,
+      </if>
+      <if test="syOther2 != null">
+        sy_other2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="syId != null">
+        #{syId,jdbcType=INTEGER},
+      </if>
+      <if test="syTitle != null">
+        #{syTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="syContent != null">
+        #{syContent,jdbcType=VARCHAR},
+      </if>
+      <if test="syUserid != null">
+        #{syUserid,jdbcType=INTEGER},
+      </if>
+      <if test="syType != null">
+        #{syType,jdbcType=INTEGER},
+      </if>
+      <if test="syStatus != null">
+        #{syStatus,jdbcType=INTEGER},
+      </if>
+      <if test="syOther1 != null">
+        #{syOther1,jdbcType=VARCHAR},
+      </if>
+      <if test="syOther2 != null">
+        #{syOther2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bean.Survey">
+    update survey
+    <set>
+      <if test="syTitle != null">
+        sy_title = #{syTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="syContent != null">
+        sy_content = #{syContent,jdbcType=VARCHAR},
+      </if>
+      <if test="syUserid != null">
+        sy_userId = #{syUserid,jdbcType=INTEGER},
+      </if>
+      <if test="syType != null">
+        sy_type = #{syType,jdbcType=INTEGER},
+      </if>
+      <if test="syStatus != null">
+        sy_status = #{syStatus,jdbcType=INTEGER},
+      </if>
+      <if test="syOther1 != null">
+        sy_other1 = #{syOther1,jdbcType=VARCHAR},
+      </if>
+      <if test="syOther2 != null">
+        sy_other2 = #{syOther2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sy_id = #{syId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bean.Survey">
+    update survey
+    set sy_title = #{syTitle,jdbcType=VARCHAR},
+      sy_content = #{syContent,jdbcType=VARCHAR},
+      sy_userId = #{syUserid,jdbcType=INTEGER},
+      sy_type = #{syType,jdbcType=INTEGER},
+      sy_status = #{syStatus,jdbcType=INTEGER},
+      sy_other1 = #{syOther1,jdbcType=VARCHAR},
+      sy_other2 = #{syOther2,jdbcType=VARCHAR}
+    where sy_id = #{syId,jdbcType=INTEGER}
+  </update>
+
+  <!--查询-->
+  <select id="selectSurvey" resultMap="BaseResultMap">
+    select * from survey where sy_title = '关于我们'
+  </select>
+
+</mapper>

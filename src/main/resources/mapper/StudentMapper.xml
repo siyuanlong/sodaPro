@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.StudentMapper">
+  <resultMap id="BaseResultMap" type="com.bean.Student">
+    <id column="st_id" jdbcType="INTEGER" property="stId" />
+    <result column="st_name" jdbcType="VARCHAR" property="stName" />
+    <result column="st_loginName" jdbcType="VARCHAR" property="stLoginname" />
+    <result column="st_password" jdbcType="VARCHAR" property="stPassword" />
+    <result column="st_sex" jdbcType="INTEGER" property="stSex" />
+    <result column="st_age" jdbcType="INTEGER" property="stAge" />
+    <result column="st_school" jdbcType="VARCHAR" property="stSchool" />
+    <result column="st_idcard" jdbcType="VARCHAR" property="stIdcard" />
+    <result column="st_major" jdbcType="VARCHAR" property="stMajor" />
+    <result column="st_phone" jdbcType="VARCHAR" property="stPhone" />
+    <result column="st_address" jdbcType="VARCHAR" property="stAddress" />
+    <result column="st_email" jdbcType="VARCHAR" property="stEmail" />
+    <result column="st_remark" jdbcType="VARCHAR" property="stRemark" />
+    <result column="st_money" jdbcType="INTEGER" property="stMoney" />
+    <result column="st_status" jdbcType="INTEGER" property="stStatus" />
+    <result column="st_other1" jdbcType="VARCHAR" property="stOther1" />
+    <result column="st_other2" jdbcType="VARCHAR" property="stOther2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    st_id, st_name, st_loginName, st_password, st_sex, st_age, st_school, st_idcard, 
+    st_major, st_phone, st_address, st_email, st_remark, st_money, st_status, st_other1, 
+    st_other2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from student
+    where st_id = #{stId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from student
+    where st_id = #{stId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bean.Student">
+    insert into student (st_id, st_name, st_loginName, 
+      st_password, st_sex, st_age, 
+      st_school, st_idcard, st_major, 
+      st_phone, st_address, st_email, 
+      st_remark, st_money, st_status, 
+      st_other1, st_other2)
+    values (#{stId,jdbcType=INTEGER}, #{stName,jdbcType=VARCHAR}, #{stLoginname,jdbcType=VARCHAR}, 
+      #{stPassword,jdbcType=VARCHAR}, #{stSex,jdbcType=INTEGER}, #{stAge,jdbcType=INTEGER}, 
+      #{stSchool,jdbcType=VARCHAR}, #{stIdcard,jdbcType=VARCHAR}, #{stMajor,jdbcType=VARCHAR}, 
+      #{stPhone,jdbcType=VARCHAR}, #{stAddress,jdbcType=VARCHAR}, #{stEmail,jdbcType=VARCHAR}, 
+      #{stRemark,jdbcType=VARCHAR}, #{stMoney,jdbcType=INTEGER}, #{stStatus,jdbcType=INTEGER}, 
+      #{stOther1,jdbcType=VARCHAR}, #{stOther2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bean.Student">
+    insert into student
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="stId != null">
+        st_id,
+      </if>
+      <if test="stName != null">
+        st_name,
+      </if>
+      <if test="stLoginname != null">
+        st_loginName,
+      </if>
+      <if test="stPassword != null">
+        st_password,
+      </if>
+      <if test="stSex != null">
+        st_sex,
+      </if>
+      <if test="stAge != null">
+        st_age,
+      </if>
+      <if test="stSchool != null">
+        st_school,
+      </if>
+      <if test="stIdcard != null">
+        st_idcard,
+      </if>
+      <if test="stMajor != null">
+        st_major,
+      </if>
+      <if test="stPhone != null">
+        st_phone,
+      </if>
+      <if test="stAddress != null">
+        st_address,
+      </if>
+      <if test="stEmail != null">
+        st_email,
+      </if>
+      <if test="stRemark != null">
+        st_remark,
+      </if>
+      <if test="stMoney != null">
+        st_money,
+      </if>
+      <if test="stStatus != null">
+        st_status,
+      </if>
+      <if test="stOther1 != null">
+        st_other1,
+      </if>
+      <if test="stOther2 != null">
+        st_other2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="stId != null">
+        #{stId,jdbcType=INTEGER},
+      </if>
+      <if test="stName != null">
+        #{stName,jdbcType=VARCHAR},
+      </if>
+      <if test="stLoginname != null">
+        #{stLoginname,jdbcType=VARCHAR},
+      </if>
+      <if test="stPassword != null">
+        #{stPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="stSex != null">
+        #{stSex,jdbcType=INTEGER},
+      </if>
+      <if test="stAge != null">
+        #{stAge,jdbcType=INTEGER},
+      </if>
+      <if test="stSchool != null">
+        #{stSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="stIdcard != null">
+        #{stIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="stMajor != null">
+        #{stMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="stPhone != null">
+        #{stPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="stAddress != null">
+        #{stAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="stEmail != null">
+        #{stEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="stRemark != null">
+        #{stRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="stMoney != null">
+        #{stMoney,jdbcType=INTEGER},
+      </if>
+      <if test="stStatus != null">
+        #{stStatus,jdbcType=INTEGER},
+      </if>
+      <if test="stOther1 != null">
+        #{stOther1,jdbcType=VARCHAR},
+      </if>
+      <if test="stOther2 != null">
+        #{stOther2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bean.Student">
+    update student
+    <set>
+      <if test="stName != null">
+        st_name = #{stName,jdbcType=VARCHAR},
+      </if>
+      <if test="stLoginname != null">
+        st_loginName = #{stLoginname,jdbcType=VARCHAR},
+      </if>
+      <if test="stPassword != null">
+        st_password = #{stPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="stSex != null">
+        st_sex = #{stSex,jdbcType=INTEGER},
+      </if>
+      <if test="stAge != null">
+        st_age = #{stAge,jdbcType=INTEGER},
+      </if>
+      <if test="stSchool != null">
+        st_school = #{stSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="stIdcard != null">
+        st_idcard = #{stIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="stMajor != null">
+        st_major = #{stMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="stPhone != null">
+        st_phone = #{stPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="stAddress != null">
+        st_address = #{stAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="stEmail != null">
+        st_email = #{stEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="stRemark != null">
+        st_remark = #{stRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="stMoney != null">
+        st_money = #{stMoney,jdbcType=INTEGER},
+      </if>
+      <if test="stStatus != null">
+        st_status = #{stStatus,jdbcType=INTEGER},
+      </if>
+      <if test="stOther1 != null">
+        st_other1 = #{stOther1,jdbcType=VARCHAR},
+      </if>
+      <if test="stOther2 != null">
+        st_other2 = #{stOther2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where st_id = #{stId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bean.Student">
+    update student
+    set st_name = #{stName,jdbcType=VARCHAR},
+      st_loginName = #{stLoginname,jdbcType=VARCHAR},
+      st_password = #{stPassword,jdbcType=VARCHAR},
+      st_sex = #{stSex,jdbcType=INTEGER},
+      st_age = #{stAge,jdbcType=INTEGER},
+      st_school = #{stSchool,jdbcType=VARCHAR},
+      st_idcard = #{stIdcard,jdbcType=VARCHAR},
+      st_major = #{stMajor,jdbcType=VARCHAR},
+      st_phone = #{stPhone,jdbcType=VARCHAR},
+      st_address = #{stAddress,jdbcType=VARCHAR},
+      st_email = #{stEmail,jdbcType=VARCHAR},
+      st_remark = #{stRemark,jdbcType=VARCHAR},
+      st_money = #{stMoney,jdbcType=INTEGER},
+      st_status = #{stStatus,jdbcType=INTEGER},
+      st_other1 = #{stOther1,jdbcType=VARCHAR},
+      st_other2 = #{stOther2,jdbcType=VARCHAR}
+    where st_id = #{stId,jdbcType=INTEGER}
+  </update>
+
+    <!--司_查询所有学生信息(含模糊查询)-->
+    <select id="selectAllStudents" resultMap="BaseResultMap">
+        select * from student
+        <where>
+            <if test="stname!=null and stname!=''">
+              and st_name like '%${stname}%'
+            </if>
+            <if test="stidcard!=null and stidcard!=''">
+              and st_idcard like '%${stidcard}%'
+            </if>
+        </where>
+    </select>
+
+    <!--司_批量删除学生信息-->
+    <delete id="deleteManyStudents">
+        delete from student where st_id in (
+          <foreach collection="array" separator="," item="stIds">
+              #{stIds}
+          </foreach>
+        )
+    </delete>
+
+    <!--司_查看课程的学生信息-->
+    <select id="selectStudentByCeid" resultMap="BaseResultMap">
+      select * from student where st_id in (
+          select stuId from stu_course sc , course c where sc.cId = c.ce_id and c.ce_id = #{ceId}
+      )
+      <if test="stname!=null and stname!=''">
+        and st_name like '%${stname}%'
+      </if>
+      <if test="stidcard!=null and stidcard!=''">
+        and st_idcard like '%${stidcard}%'
+      </if>
+    </select>
+</mapper>

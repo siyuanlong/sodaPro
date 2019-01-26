@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.bean.User">
+    <id column="ur_id" jdbcType="INTEGER" property="urId" />
+    <result column="ur_name" jdbcType="VARCHAR" property="urName" />
+    <result column="ur_loginName" jdbcType="VARCHAR" property="urLoginname" />
+    <result column="ur_password" jdbcType="VARCHAR" property="urPassword" />
+    <result column="ur_idcard" jdbcType="VARCHAR" property="urIdcard" />
+    <result column="ur_phone" jdbcType="VARCHAR" property="urPhone" />
+    <result column="ur_sex" jdbcType="INTEGER" property="urSex" />
+    <result column="ur_address" jdbcType="VARCHAR" property="urAddress" />
+    <result column="ur_email" jdbcType="VARCHAR" property="urEmail" />
+    <result column="ur_state" jdbcType="INTEGER" property="urState" />
+    <result column="ur_roleId" jdbcType="INTEGER" property="urRoleid" />
+    <result column="ur_status" jdbcType="INTEGER" property="urStatus" />
+    <result column="ur_other1" jdbcType="VARCHAR" property="urOther1" />
+    <result column="ur_other2" jdbcType="VARCHAR" property="urOther2" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    ur_id, ur_name, ur_loginName, ur_password, ur_idcard, ur_phone, ur_sex, ur_address, 
+    ur_email, ur_state, ur_roleId, ur_status, ur_other1, ur_other2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where ur_id = #{urId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where ur_id = #{urId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bean.User">
+    insert into user (ur_id, ur_name, ur_loginName, 
+      ur_password, ur_idcard, ur_phone, 
+      ur_sex, ur_address, ur_email, 
+      ur_state, ur_roleId, ur_status, 
+      ur_other1, ur_other2)
+    values (#{urId,jdbcType=INTEGER}, #{urName,jdbcType=VARCHAR}, #{urLoginname,jdbcType=VARCHAR}, 
+      #{urPassword,jdbcType=VARCHAR}, #{urIdcard,jdbcType=VARCHAR}, #{urPhone,jdbcType=VARCHAR}, 
+      #{urSex,jdbcType=INTEGER}, #{urAddress,jdbcType=VARCHAR}, #{urEmail,jdbcType=VARCHAR}, 
+      #{urState,jdbcType=INTEGER}, #{urRoleid,jdbcType=INTEGER}, #{urStatus,jdbcType=INTEGER}, 
+      #{urOther1,jdbcType=VARCHAR}, #{urOther2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bean.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="urId != null">
+        ur_id,
+      </if>
+      <if test="urName != null">
+        ur_name,
+      </if>
+      <if test="urLoginname != null">
+        ur_loginName,
+      </if>
+      <if test="urPassword != null">
+        ur_password,
+      </if>
+      <if test="urIdcard != null">
+        ur_idcard,
+      </if>
+      <if test="urPhone != null">
+        ur_phone,
+      </if>
+      <if test="urSex != null">
+        ur_sex,
+      </if>
+      <if test="urAddress != null">
+        ur_address,
+      </if>
+      <if test="urEmail != null">
+        ur_email,
+      </if>
+      <if test="urState != null">
+        ur_state,
+      </if>
+      <if test="urRoleid != null">
+        ur_roleId,
+      </if>
+      <if test="urStatus != null">
+        ur_status,
+      </if>
+      <if test="urOther1 != null">
+        ur_other1,
+      </if>
+      <if test="urOther2 != null">
+        ur_other2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="urId != null">
+        #{urId,jdbcType=INTEGER},
+      </if>
+      <if test="urName != null">
+        #{urName,jdbcType=VARCHAR},
+      </if>
+      <if test="urLoginname != null">
+        #{urLoginname,jdbcType=VARCHAR},
+      </if>
+      <if test="urPassword != null">
+        #{urPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="urIdcard != null">
+        #{urIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="urPhone != null">
+        #{urPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="urSex != null">
+        #{urSex,jdbcType=INTEGER},
+      </if>
+      <if test="urAddress != null">
+        #{urAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="urEmail != null">
+        #{urEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="urState != null">
+        #{urState,jdbcType=INTEGER},
+      </if>
+      <if test="urRoleid != null">
+        #{urRoleid,jdbcType=INTEGER},
+      </if>
+      <if test="urStatus != null">
+        #{urStatus,jdbcType=INTEGER},
+      </if>
+      <if test="urOther1 != null">
+        #{urOther1,jdbcType=VARCHAR},
+      </if>
+      <if test="urOther2 != null">
+        #{urOther2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bean.User">
+    update user
+    <set>
+      <if test="urName != null">
+        ur_name = #{urName,jdbcType=VARCHAR},
+      </if>
+      <if test="urLoginname != null">
+        ur_loginName = #{urLoginname,jdbcType=VARCHAR},
+      </if>
+      <if test="urPassword != null">
+        ur_password = #{urPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="urIdcard != null">
+        ur_idcard = #{urIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="urPhone != null">
+        ur_phone = #{urPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="urSex != null">
+        ur_sex = #{urSex,jdbcType=INTEGER},
+      </if>
+      <if test="urAddress != null">
+        ur_address = #{urAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="urEmail != null">
+        ur_email = #{urEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="urState != null">
+        ur_state = #{urState,jdbcType=INTEGER},
+      </if>
+      <if test="urRoleid != null">
+        ur_roleId = #{urRoleid,jdbcType=INTEGER},
+      </if>
+      <if test="urStatus != null">
+        ur_status = #{urStatus,jdbcType=INTEGER},
+      </if>
+      <if test="urOther1 != null">
+        ur_other1 = #{urOther1,jdbcType=VARCHAR},
+      </if>
+      <if test="urOther2 != null">
+        ur_other2 = #{urOther2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ur_id = #{urId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bean.User">
+    update user
+    set ur_name = #{urName,jdbcType=VARCHAR},
+      ur_loginName = #{urLoginname,jdbcType=VARCHAR},
+      ur_password = #{urPassword,jdbcType=VARCHAR},
+      ur_idcard = #{urIdcard,jdbcType=VARCHAR},
+      ur_phone = #{urPhone,jdbcType=VARCHAR},
+      ur_sex = #{urSex,jdbcType=INTEGER},
+      ur_address = #{urAddress,jdbcType=VARCHAR},
+      ur_email = #{urEmail,jdbcType=VARCHAR},
+      ur_state = #{urState,jdbcType=INTEGER},
+      ur_roleId = #{urRoleid,jdbcType=INTEGER},
+      ur_status = #{urStatus,jdbcType=INTEGER},
+      ur_other1 = #{urOther1,jdbcType=VARCHAR},
+      ur_other2 = #{urOther2,jdbcType=VARCHAR}
+    where ur_id = #{urId,jdbcType=INTEGER}
+  </update>
+
+  <!--司_用于判断输入名字角色是否是讲师-->
+  <select id="judgeName" resultMap="BaseResultMap">
+    select * from user u, role r
+    where r.re_id = u.ur_roleId
+    and r.re_name = '讲师'
+    and u.ur_name = #{uname}
+  </select>
+
+</mapper>

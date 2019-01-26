@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.MenuMapper">
+  <resultMap id="BaseResultMap" type="com.bean.Menu">
+    <id column="mu_id" jdbcType="INTEGER" property="muId" />
+    <result column="mu_pid" jdbcType="INTEGER" property="muPid" />
+    <result column="mu_name" jdbcType="VARCHAR" property="muName" />
+    <result column="mu_url" jdbcType="VARCHAR" property="muUrl" />
+    <result column="mu_remark" jdbcType="VARCHAR" property="muRemark" />
+    <result column="mu_state" jdbcType="INTEGER" property="muState" />
+    <result column="mu_status" jdbcType="INTEGER" property="muStatus" />
+    <result column="mu_other1" jdbcType="VARCHAR" property="muOther1" />
+    <result column="mu_other2" jdbcType="VARCHAR" property="muOther2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    mu_id, mu_pid, mu_name, mu_url, mu_remark, mu_state, mu_status, mu_other1, mu_other2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from menu
+    where mu_id = #{muId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from menu
+    where mu_id = #{muId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bean.Menu">
+    insert into menu (mu_id, mu_pid, mu_name, 
+      mu_url, mu_remark, mu_state, 
+      mu_status, mu_other1, mu_other2
+      )
+    values (#{muId,jdbcType=INTEGER}, #{muPid,jdbcType=INTEGER}, #{muName,jdbcType=VARCHAR}, 
+      #{muUrl,jdbcType=VARCHAR}, #{muRemark,jdbcType=VARCHAR}, #{muState,jdbcType=INTEGER}, 
+      #{muStatus,jdbcType=INTEGER}, #{muOther1,jdbcType=VARCHAR}, #{muOther2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bean.Menu">
+    insert into menu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="muId != null">
+        mu_id,
+      </if>
+      <if test="muPid != null">
+        mu_pid,
+      </if>
+      <if test="muName != null">
+        mu_name,
+      </if>
+      <if test="muUrl != null">
+        mu_url,
+      </if>
+      <if test="muRemark != null">
+        mu_remark,
+      </if>
+      <if test="muState != null">
+        mu_state,
+      </if>
+      <if test="muStatus != null">
+        mu_status,
+      </if>
+      <if test="muOther1 != null">
+        mu_other1,
+      </if>
+      <if test="muOther2 != null">
+        mu_other2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="muId != null">
+        #{muId,jdbcType=INTEGER},
+      </if>
+      <if test="muPid != null">
+        #{muPid,jdbcType=INTEGER},
+      </if>
+      <if test="muName != null">
+        #{muName,jdbcType=VARCHAR},
+      </if>
+      <if test="muUrl != null">
+        #{muUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="muRemark != null">
+        #{muRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="muState != null">
+        #{muState,jdbcType=INTEGER},
+      </if>
+      <if test="muStatus != null">
+        #{muStatus,jdbcType=INTEGER},
+      </if>
+      <if test="muOther1 != null">
+        #{muOther1,jdbcType=VARCHAR},
+      </if>
+      <if test="muOther2 != null">
+        #{muOther2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bean.Menu">
+    update menu
+    <set>
+      <if test="muPid != null">
+        mu_pid = #{muPid,jdbcType=INTEGER},
+      </if>
+      <if test="muName != null">
+        mu_name = #{muName,jdbcType=VARCHAR},
+      </if>
+      <if test="muUrl != null">
+        mu_url = #{muUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="muRemark != null">
+        mu_remark = #{muRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="muState != null">
+        mu_state = #{muState,jdbcType=INTEGER},
+      </if>
+      <if test="muStatus != null">
+        mu_status = #{muStatus,jdbcType=INTEGER},
+      </if>
+      <if test="muOther1 != null">
+        mu_other1 = #{muOther1,jdbcType=VARCHAR},
+      </if>
+      <if test="muOther2 != null">
+        mu_other2 = #{muOther2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where mu_id = #{muId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bean.Menu">
+    update menu
+    set mu_pid = #{muPid,jdbcType=INTEGER},
+      mu_name = #{muName,jdbcType=VARCHAR},
+      mu_url = #{muUrl,jdbcType=VARCHAR},
+      mu_remark = #{muRemark,jdbcType=VARCHAR},
+      mu_state = #{muState,jdbcType=INTEGER},
+      mu_status = #{muStatus,jdbcType=INTEGER},
+      mu_other1 = #{muOther1,jdbcType=VARCHAR},
+      mu_other2 = #{muOther2,jdbcType=VARCHAR}
+    where mu_id = #{muId,jdbcType=INTEGER}
+  </update>
+</mapper>

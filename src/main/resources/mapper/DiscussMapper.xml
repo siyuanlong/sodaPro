@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.DiscussMapper">
+  <resultMap id="BaseResultMap" type="com.bean.Discuss">
+    <id column="ds_id" jdbcType="INTEGER" property="dsId" />
+    <result column="ds_content" jdbcType="VARCHAR" property="dsContent" />
+    <result column="ds_showtime" jdbcType="DATE" property="dsShowtime" />
+    <result column="ds_newsId" jdbcType="INTEGER" property="dsNewsid" />
+    <result column="ds_status" jdbcType="INTEGER" property="dsStatus" />
+    <result column="ds_other1" jdbcType="VARCHAR" property="dsOther1" />
+    <result column="ds_other2" jdbcType="VARCHAR" property="dsOther2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ds_id, ds_content, ds_showtime, ds_newsId, ds_status, ds_other1, ds_other2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from discuss
+    where ds_id = #{dsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from discuss
+    where ds_id = #{dsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bean.Discuss">
+    insert into discuss (ds_id, ds_content, ds_showtime, 
+      ds_newsId, ds_status, ds_other1, 
+      ds_other2)
+    values (#{dsId,jdbcType=INTEGER}, #{dsContent,jdbcType=VARCHAR}, #{dsShowtime,jdbcType=DATE}, 
+      #{dsNewsid,jdbcType=INTEGER}, #{dsStatus,jdbcType=INTEGER}, #{dsOther1,jdbcType=VARCHAR}, 
+      #{dsOther2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bean.Discuss">
+    insert into discuss
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dsId != null">
+        ds_id,
+      </if>
+      <if test="dsContent != null">
+        ds_content,
+      </if>
+      <if test="dsShowtime != null">
+        ds_showtime,
+      </if>
+      <if test="dsNewsid != null">
+        ds_newsId,
+      </if>
+      <if test="dsStatus != null">
+        ds_status,
+      </if>
+      <if test="dsOther1 != null">
+        ds_other1,
+      </if>
+      <if test="dsOther2 != null">
+        ds_other2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dsId != null">
+        #{dsId,jdbcType=INTEGER},
+      </if>
+      <if test="dsContent != null">
+        #{dsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="dsShowtime != null">
+        #{dsShowtime,jdbcType=DATE},
+      </if>
+      <if test="dsNewsid != null">
+        #{dsNewsid,jdbcType=INTEGER},
+      </if>
+      <if test="dsStatus != null">
+        #{dsStatus,jdbcType=INTEGER},
+      </if>
+      <if test="dsOther1 != null">
+        #{dsOther1,jdbcType=VARCHAR},
+      </if>
+      <if test="dsOther2 != null">
+        #{dsOther2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bean.Discuss">
+    update discuss
+    <set>
+      <if test="dsContent != null">
+        ds_content = #{dsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="dsShowtime != null">
+        ds_showtime = #{dsShowtime,jdbcType=DATE},
+      </if>
+      <if test="dsNewsid != null">
+        ds_newsId = #{dsNewsid,jdbcType=INTEGER},
+      </if>
+      <if test="dsStatus != null">
+        ds_status = #{dsStatus,jdbcType=INTEGER},
+      </if>
+      <if test="dsOther1 != null">
+        ds_other1 = #{dsOther1,jdbcType=VARCHAR},
+      </if>
+      <if test="dsOther2 != null">
+        ds_other2 = #{dsOther2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ds_id = #{dsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bean.Discuss">
+    update discuss
+    set ds_content = #{dsContent,jdbcType=VARCHAR},
+      ds_showtime = #{dsShowtime,jdbcType=DATE},
+      ds_newsId = #{dsNewsid,jdbcType=INTEGER},
+      ds_status = #{dsStatus,jdbcType=INTEGER},
+      ds_other1 = #{dsOther1,jdbcType=VARCHAR},
+      ds_other2 = #{dsOther2,jdbcType=VARCHAR}
+    where ds_id = #{dsId,jdbcType=INTEGER}
+  </update>
+</mapper>

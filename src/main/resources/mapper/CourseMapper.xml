@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.CourseMapper">
+  <resultMap id="BaseResultMap" type="com.bean.Course">
+    <id column="ce_id" jdbcType="INTEGER" property="ceId" />
+    <result column="ce_name" jdbcType="VARCHAR" property="ceName" />
+    <result column="ce_address" jdbcType="VARCHAR" property="ceAddress" />
+    <result column="ce_type" jdbcType="INTEGER" property="ceType" />
+    <result column="ce_state" jdbcType="INTEGER" property="ceState" />
+    <result column="ce_userId" jdbcType="INTEGER" property="ceUserid" />
+    <result column="ce_money" jdbcType="DOUBLE" property="ceMoney" />
+    <result column="ce_opentime" jdbcType="DATE" property="ceOpentime" />
+    <result column="ce_endtime" jdbcType="DATE" property="ceEndtime" />
+    <result column="ce_video" jdbcType="VARCHAR" property="ceVideo" />
+    <result column="ce_status" jdbcType="INTEGER" property="ceStatus" />
+    <result column="ce_easy" jdbcType="VARCHAR" property="ceEasy" />
+    <result column="ce_phone" jdbcType="INTEGER" property="cePhone" />
+  </resultMap>
+
+  <!--司_用于查询所有学生信息-->
+  <resultMap id="selectCourse" type="com.bean.Course">
+    <id column="ce_id" jdbcType="INTEGER" property="ceId" />
+    <result column="ce_name" jdbcType="VARCHAR" property="ceName" />
+    <result column="ce_address" jdbcType="VARCHAR" property="ceAddress" />
+    <result column="ce_type" jdbcType="INTEGER" property="ceType" />
+    <result column="ce_state" jdbcType="INTEGER" property="ceState" />
+    <result column="ce_userId" jdbcType="INTEGER" property="ceUserid" />
+    <result column="ce_money" jdbcType="DOUBLE" property="ceMoney" />
+    <result column="ce_opentime" jdbcType="DATE" property="ceOpentime" />
+    <result column="ce_endtime" jdbcType="DATE" property="ceEndtime" />
+    <result column="ce_video" jdbcType="VARCHAR" property="ceVideo" />
+    <result column="ce_status" jdbcType="INTEGER" property="ceStatus" />
+    <result column="ce_easy" jdbcType="VARCHAR" property="ceEasy" />
+    <result column="ce_phone" jdbcType="INTEGER" property="cePhone" />
+
+    <association property="user" javaType="com.bean.User">
+      <id column="ur_id" jdbcType="INTEGER" property="urId" />
+      <result column="ur_name" jdbcType="VARCHAR" property="urName" />
+      <result column="ur_loginName" jdbcType="VARCHAR" property="urLoginname" />
+      <result column="ur_password" jdbcType="VARCHAR" property="urPassword" />
+      <result column="ur_idcard" jdbcType="VARCHAR" property="urIdcard" />
+      <result column="ur_phone" jdbcType="VARCHAR" property="urPhone" />
+      <result column="ur_sex" jdbcType="INTEGER" property="urSex" />
+      <result column="ur_address" jdbcType="VARCHAR" property="urAddress" />
+      <result column="ur_email" jdbcType="VARCHAR" property="urEmail" />
+      <result column="ur_state" jdbcType="INTEGER" property="urState" />
+      <result column="ur_roleId" jdbcType="INTEGER" property="urRoleid" />
+      <result column="ur_status" jdbcType="INTEGER" property="urStatus" />
+      <result column="ur_other1" jdbcType="VARCHAR" property="urOther1" />
+      <result column="ur_other2" jdbcType="VARCHAR" property="urOther2" />
+    </association>
+
+  </resultMap>
+  <sql id="Base_Column_List">
+    ce_id, ce_name, ce_address, ce_type, ce_state, ce_userId, ce_money, ce_opentime, 
+    ce_endtime, ce_video, ce_status, ce_easy, ce_phone
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from course
+    where ce_id = #{ceId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from course
+    where ce_id = #{ceId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bean.Course">
+    insert into course (ce_id, ce_name, ce_address, 
+      ce_type, ce_state, ce_userId, 
+      ce_money, ce_opentime, ce_endtime, 
+      ce_video, ce_status, ce_easy, 
+      ce_phone)
+    values (#{ceId,jdbcType=INTEGER}, #{ceName,jdbcType=VARCHAR}, #{ceAddress,jdbcType=VARCHAR}, 
+      #{ceType,jdbcType=INTEGER}, #{ceState,jdbcType=INTEGER}, #{ceUserid,jdbcType=INTEGER}, 
+      #{ceMoney,jdbcType=DOUBLE}, #{ceOpentime,jdbcType=DATE}, #{ceEndtime,jdbcType=DATE}, 
+      #{ceVideo,jdbcType=VARCHAR}, #{ceStatus,jdbcType=INTEGER}, #{ceEasy,jdbcType=VARCHAR}, 
+      #{cePhone,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bean.Course">
+    insert into course
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ceId != null">
+        ce_id,
+      </if>
+      <if test="ceName != null">
+        ce_name,
+      </if>
+      <if test="ceAddress != null">
+        ce_address,
+      </if>
+      <if test="ceType != null">
+        ce_type,
+      </if>
+      <if test="ceState != null">
+        ce_state,
+      </if>
+      <if test="ceUserid != null">
+        ce_userId,
+      </if>
+      <if test="ceMoney != null">
+        ce_money,
+      </if>
+      <if test="ceOpentime != null">
+        ce_opentime,
+      </if>
+      <if test="ceEndtime != null">
+        ce_endtime,
+      </if>
+      <if test="ceVideo != null">
+        ce_video,
+      </if>
+      <if test="ceStatus != null">
+        ce_status,
+      </if>
+      <if test="ceEasy != null">
+        ce_easy,
+      </if>
+      <if test="cePhone != null">
+        ce_phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ceId != null">
+        #{ceId,jdbcType=INTEGER},
+      </if>
+      <if test="ceName != null">
+        #{ceName,jdbcType=VARCHAR},
+      </if>
+      <if test="ceAddress != null">
+        #{ceAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="ceType != null">
+        #{ceType,jdbcType=INTEGER},
+      </if>
+      <if test="ceState != null">
+        #{ceState,jdbcType=INTEGER},
+      </if>
+      <if test="ceUserid != null">
+        #{ceUserid,jdbcType=INTEGER},
+      </if>
+      <if test="ceMoney != null">
+        #{ceMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="ceOpentime != null">
+        #{ceOpentime,jdbcType=DATE},
+      </if>
+      <if test="ceEndtime != null">
+        #{ceEndtime,jdbcType=DATE},
+      </if>
+      <if test="ceVideo != null">
+        #{ceVideo,jdbcType=VARCHAR},
+      </if>
+      <if test="ceStatus != null">
+        #{ceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="ceEasy != null">
+        #{ceEasy,jdbcType=VARCHAR},
+      </if>
+      <if test="cePhone != null">
+        #{cePhone,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bean.Course">
+    update course
+    <set>
+      <if test="ceName != null">
+        ce_name = #{ceName,jdbcType=VARCHAR},
+      </if>
+      <if test="ceAddress != null">
+        ce_address = #{ceAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="ceType != null">
+        ce_type = #{ceType,jdbcType=INTEGER},
+      </if>
+      <if test="ceState != null">
+        ce_state = #{ceState,jdbcType=INTEGER},
+      </if>
+      <if test="ceUserid != null">
+        ce_userId = #{ceUserid,jdbcType=INTEGER},
+      </if>
+      <if test="ceMoney != null">
+        ce_money = #{ceMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="ceOpentime != null">
+        ce_opentime = #{ceOpentime,jdbcType=DATE},
+      </if>
+      <if test="ceEndtime != null">
+        ce_endtime = #{ceEndtime,jdbcType=DATE},
+      </if>
+      <if test="ceVideo != null">
+        ce_video = #{ceVideo,jdbcType=VARCHAR},
+      </if>
+      <if test="ceStatus != null">
+        ce_status = #{ceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="ceEasy != null">
+        ce_easy = #{ceEasy,jdbcType=VARCHAR},
+      </if>
+      <if test="cePhone != null">
+        ce_phone = #{cePhone,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ce_id = #{ceId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bean.Course">
+    update course
+    set ce_name = #{ceName,jdbcType=VARCHAR},
+      ce_address = #{ceAddress,jdbcType=VARCHAR},
+      ce_type = #{ceType,jdbcType=INTEGER},
+      ce_state = #{ceState,jdbcType=INTEGER},
+      ce_userId = #{ceUserid,jdbcType=INTEGER},
+      ce_money = #{ceMoney,jdbcType=DOUBLE},
+      ce_opentime = #{ceOpentime,jdbcType=DATE},
+      ce_endtime = #{ceEndtime,jdbcType=DATE},
+      ce_video = #{ceVideo,jdbcType=VARCHAR},
+      ce_status = #{ceStatus,jdbcType=INTEGER},
+      ce_easy = #{ceEasy,jdbcType=VARCHAR},
+      ce_phone = #{cePhone,jdbcType=INTEGER}
+    where ce_id = #{ceId,jdbcType=INTEGER}
+  </update>
+
+  <!--司_用于查询所有课程信息-->
+  <select id="selectAllCourses" resultMap="selectCourse">
+    /*select * from course c, user u ,role r
+    where c.ce_userId = u.ur_id
+    and u.ur_roleId = r.re_id
+    and r.re_name="讲师"*/
+    select * from course c, user u where c.ce_userId = u.ur_id and u.ur_roleId = (
+    select r.re_id from role r where r.re_name='讲师' )
+    <if test="cname!=null and cname!=''">
+        and c.ce_name like '%${cname}%'
+    </if>
+  </select>
+
+  <!--司_用于查看单个课程信息-->
+  <select id="selectOneCourse" resultMap="selectCourse">
+
+    select * from course c, user u where c.ce_userId = u.ur_id and u.ur_roleId = (
+    select r.re_id from role r where r.re_name='讲师') and c.ce_id = #{ceId}
+
+  </select>
+
+  <delete id="deleteManyCourses" >
+    delete from course where ce_id in (
+        <foreach collection="array" item="couIds" separator=",">
+          #{couIds}
+        </foreach>
+    )
+  </delete>
+
+</mapper>

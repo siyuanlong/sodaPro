@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ContactMapper">
+  <resultMap id="BaseResultMap" type="com.bean.Contact">
+    <id column="ct_id" jdbcType="INTEGER" property="ctId" />
+    <result column="ct_title" jdbcType="VARCHAR" property="ctTitle" />
+    <result column="ct_content" jdbcType="VARCHAR" property="ctContent" />
+    <result column="ct_userId" jdbcType="INTEGER" property="ctUserid" />
+    <result column="ct_phone" jdbcType="VARCHAR" property="ctPhone" />
+    <result column="ct_time" jdbcType="DATE" property="ctTime" />
+    <result column="ct_status" jdbcType="INTEGER" property="ctStatus" />
+    <result column="ct_other" jdbcType="VARCHAR" property="ctOther" />
+    <result column="ct_other2" jdbcType="VARCHAR" property="ctOther2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ct_id, ct_title, ct_content, ct_userId, ct_phone, ct_time, ct_status, ct_other, ct_other2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from contact
+    where ct_id = #{ctId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from contact
+    where ct_id = #{ctId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bean.Contact">
+    insert into contact (ct_id, ct_title, ct_content, 
+      ct_userId, ct_phone, ct_time, 
+      ct_status, ct_other, ct_other2
+      )
+    values (#{ctId,jdbcType=INTEGER}, #{ctTitle,jdbcType=VARCHAR}, #{ctContent,jdbcType=VARCHAR}, 
+      #{ctUserid,jdbcType=INTEGER}, #{ctPhone,jdbcType=VARCHAR}, #{ctTime,jdbcType=DATE}, 
+      #{ctStatus,jdbcType=INTEGER}, #{ctOther,jdbcType=VARCHAR}, #{ctOther2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bean.Contact">
+    insert into contact
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ctId != null">
+        ct_id,
+      </if>
+      <if test="ctTitle != null">
+        ct_title,
+      </if>
+      <if test="ctContent != null">
+        ct_content,
+      </if>
+      <if test="ctUserid != null">
+        ct_userId,
+      </if>
+      <if test="ctPhone != null">
+        ct_phone,
+      </if>
+      <if test="ctTime != null">
+        ct_time,
+      </if>
+      <if test="ctStatus != null">
+        ct_status,
+      </if>
+      <if test="ctOther != null">
+        ct_other,
+      </if>
+      <if test="ctOther2 != null">
+        ct_other2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ctId != null">
+        #{ctId,jdbcType=INTEGER},
+      </if>
+      <if test="ctTitle != null">
+        #{ctTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="ctContent != null">
+        #{ctContent,jdbcType=VARCHAR},
+      </if>
+      <if test="ctUserid != null">
+        #{ctUserid,jdbcType=INTEGER},
+      </if>
+      <if test="ctPhone != null">
+        #{ctPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="ctTime != null">
+        #{ctTime,jdbcType=DATE},
+      </if>
+      <if test="ctStatus != null">
+        #{ctStatus,jdbcType=INTEGER},
+      </if>
+      <if test="ctOther != null">
+        #{ctOther,jdbcType=VARCHAR},
+      </if>
+      <if test="ctOther2 != null">
+        #{ctOther2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bean.Contact">
+    update contact
+    <set>
+      <if test="ctTitle != null">
+        ct_title = #{ctTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="ctContent != null">
+        ct_content = #{ctContent,jdbcType=VARCHAR},
+      </if>
+      <if test="ctUserid != null">
+        ct_userId = #{ctUserid,jdbcType=INTEGER},
+      </if>
+      <if test="ctPhone != null">
+        ct_phone = #{ctPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="ctTime != null">
+        ct_time = #{ctTime,jdbcType=DATE},
+      </if>
+      <if test="ctStatus != null">
+        ct_status = #{ctStatus,jdbcType=INTEGER},
+      </if>
+      <if test="ctOther != null">
+        ct_other = #{ctOther,jdbcType=VARCHAR},
+      </if>
+      <if test="ctOther2 != null">
+        ct_other2 = #{ctOther2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ct_id = #{ctId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bean.Contact">
+    update contact
+    set ct_title = #{ctTitle,jdbcType=VARCHAR},
+      ct_content = #{ctContent,jdbcType=VARCHAR},
+      ct_userId = #{ctUserid,jdbcType=INTEGER},
+      ct_phone = #{ctPhone,jdbcType=VARCHAR},
+      ct_time = #{ctTime,jdbcType=DATE},
+      ct_status = #{ctStatus,jdbcType=INTEGER},
+      ct_other = #{ctOther,jdbcType=VARCHAR},
+      ct_other2 = #{ctOther2,jdbcType=VARCHAR}
+    where ct_id = #{ctId,jdbcType=INTEGER}
+  </update>
+</mapper>

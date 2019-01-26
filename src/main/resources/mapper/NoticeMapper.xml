@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.NoticeMapper">
+  <resultMap id="BaseResultMap" type="com.bean.Notice">
+    <id column="ne_id" jdbcType="INTEGER" property="neId" />
+    <result column="ne_title" jdbcType="VARCHAR" property="neTitle" />
+    <result column="ne_content" jdbcType="VARCHAR" property="neContent" />
+    <result column="ne_level" jdbcType="INTEGER" property="neLevel" />
+    <result column="ne_updatetime" jdbcType="TIMESTAMP" property="neUpdatetime" />
+    <result column="ne_userId" jdbcType="INTEGER" property="neUserid" />
+    <result column="ne_status" jdbcType="INTEGER" property="neStatus" />
+    <result column="ne_other1" jdbcType="VARCHAR" property="neOther1" />
+    <result column="ne_other2" jdbcType="VARCHAR" property="neOther2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ne_id, ne_title, ne_content, ne_level, ne_updatetime, ne_userId, ne_status, ne_other1, 
+    ne_other2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from notice
+    where ne_id = #{neId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from notice
+    where ne_id = #{neId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bean.Notice">
+    insert into notice (ne_id, ne_title, ne_content, 
+      ne_level, ne_updatetime, ne_userId, 
+      ne_status, ne_other1, ne_other2
+      )
+    values (#{neId,jdbcType=INTEGER}, #{neTitle,jdbcType=VARCHAR}, #{neContent,jdbcType=VARCHAR}, 
+      #{neLevel,jdbcType=INTEGER}, #{neUpdatetime,jdbcType=TIMESTAMP}, #{neUserid,jdbcType=INTEGER}, 
+      #{neStatus,jdbcType=INTEGER}, #{neOther1,jdbcType=VARCHAR}, #{neOther2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bean.Notice">
+    insert into notice
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="neId != null">
+        ne_id,
+      </if>
+      <if test="neTitle != null">
+        ne_title,
+      </if>
+      <if test="neContent != null">
+        ne_content,
+      </if>
+      <if test="neLevel != null">
+        ne_level,
+      </if>
+      <if test="neUpdatetime != null">
+        ne_updatetime,
+      </if>
+      <if test="neUserid != null">
+        ne_userId,
+      </if>
+      <if test="neStatus != null">
+        ne_status,
+      </if>
+      <if test="neOther1 != null">
+        ne_other1,
+      </if>
+      <if test="neOther2 != null">
+        ne_other2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="neId != null">
+        #{neId,jdbcType=INTEGER},
+      </if>
+      <if test="neTitle != null">
+        #{neTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="neContent != null">
+        #{neContent,jdbcType=VARCHAR},
+      </if>
+      <if test="neLevel != null">
+        #{neLevel,jdbcType=INTEGER},
+      </if>
+      <if test="neUpdatetime != null">
+        #{neUpdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="neUserid != null">
+        #{neUserid,jdbcType=INTEGER},
+      </if>
+      <if test="neStatus != null">
+        #{neStatus,jdbcType=INTEGER},
+      </if>
+      <if test="neOther1 != null">
+        #{neOther1,jdbcType=VARCHAR},
+      </if>
+      <if test="neOther2 != null">
+        #{neOther2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bean.Notice">
+    update notice
+    <set>
+      <if test="neTitle != null">
+        ne_title = #{neTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="neContent != null">
+        ne_content = #{neContent,jdbcType=VARCHAR},
+      </if>
+      <if test="neLevel != null">
+        ne_level = #{neLevel,jdbcType=INTEGER},
+      </if>
+      <if test="neUpdatetime != null">
+        ne_updatetime = #{neUpdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="neUserid != null">
+        ne_userId = #{neUserid,jdbcType=INTEGER},
+      </if>
+      <if test="neStatus != null">
+        ne_status = #{neStatus,jdbcType=INTEGER},
+      </if>
+      <if test="neOther1 != null">
+        ne_other1 = #{neOther1,jdbcType=VARCHAR},
+      </if>
+      <if test="neOther2 != null">
+        ne_other2 = #{neOther2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ne_id = #{neId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bean.Notice">
+    update notice
+    set ne_title = #{neTitle,jdbcType=VARCHAR},
+      ne_content = #{neContent,jdbcType=VARCHAR},
+      ne_level = #{neLevel,jdbcType=INTEGER},
+      ne_updatetime = #{neUpdatetime,jdbcType=TIMESTAMP},
+      ne_userId = #{neUserid,jdbcType=INTEGER},
+      ne_status = #{neStatus,jdbcType=INTEGER},
+      ne_other1 = #{neOther1,jdbcType=VARCHAR},
+      ne_other2 = #{neOther2,jdbcType=VARCHAR}
+    where ne_id = #{neId,jdbcType=INTEGER}
+  </update>
+
+  <!--司_查看所有公告信息-->
+  <select id="selectAllNotice" resultMap="BaseResultMap">
+    select * from notice
+    <where>
+      <if test="title!=null||title!=''">
+        and ne_title like '%${title}%'
+      </if>
+      <if test="updatetime!=null||updatetime!=''">
+        and ne_updatetime like '%${updatetime}%'
+      </if>
+      <if test="level!=null||level!=''">
+        and ne_level like '%${level}%'
+      </if>
+    </where>
+  </select>
+
+  <!--司_批量删除公告信息-->
+  <delete id="deleteManyNotices" >
+      delete from notice where ne_id in (
+        <foreach collection="array" separator="," item="nids">
+          #{nids}
+        </foreach>
+      )
+  </delete>
+
+    <!--用于导出excel-->
+  <select id="selectbeforeexportNotices" resultMap="BaseResultMap">
+    select * from notice where ne_id in (
+      <foreach collection="array" separator="," item="nids">
+          #{nids}
+      </foreach>
+    )
+  </select>
+
+
+</mapper>

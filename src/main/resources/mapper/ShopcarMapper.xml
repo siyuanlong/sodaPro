@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ShopcarMapper">
+  <resultMap id="BaseResultMap" type="com.bean.Shopcar">
+    <id column="sr_id" jdbcType="INTEGER" property="srId" />
+    <result column="sr_coursename" jdbcType="VARCHAR" property="srCoursename" />
+    <result column="sr_courseteacher" jdbcType="VARCHAR" property="srCourseteacher" />
+    <result column="sr_coursetype" jdbcType="INTEGER" property="srCoursetype" />
+    <result column="sr_courseprice" jdbcType="DOUBLE" property="srCourseprice" />
+    <result column="sr_courseabstract" jdbcType="VARCHAR" property="srCourseabstract" />
+    <result column="sr_stu_id" jdbcType="INTEGER" property="srStuId" />
+    <result column="sr_cs_id" jdbcType="INTEGER" property="srCsId" />
+    <result column="sr_status" jdbcType="INTEGER" property="srStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sr_id, sr_coursename, sr_courseteacher, sr_coursetype, sr_courseprice, sr_courseabstract, 
+    sr_stu_id, sr_cs_id, sr_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from shopcar
+    where sr_id = #{srId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from shopcar
+    where sr_id = #{srId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bean.Shopcar">
+    insert into shopcar (sr_id, sr_coursename, sr_courseteacher, 
+      sr_coursetype, sr_courseprice, sr_courseabstract, 
+      sr_stu_id, sr_cs_id, sr_status
+      )
+    values (#{srId,jdbcType=INTEGER}, #{srCoursename,jdbcType=VARCHAR}, #{srCourseteacher,jdbcType=VARCHAR}, 
+      #{srCoursetype,jdbcType=INTEGER}, #{srCourseprice,jdbcType=DOUBLE}, #{srCourseabstract,jdbcType=VARCHAR}, 
+      #{srStuId,jdbcType=INTEGER}, #{srCsId,jdbcType=INTEGER}, #{srStatus,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bean.Shopcar">
+    insert into shopcar
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="srId != null">
+        sr_id,
+      </if>
+      <if test="srCoursename != null">
+        sr_coursename,
+      </if>
+      <if test="srCourseteacher != null">
+        sr_courseteacher,
+      </if>
+      <if test="srCoursetype != null">
+        sr_coursetype,
+      </if>
+      <if test="srCourseprice != null">
+        sr_courseprice,
+      </if>
+      <if test="srCourseabstract != null">
+        sr_courseabstract,
+      </if>
+      <if test="srStuId != null">
+        sr_stu_id,
+      </if>
+      <if test="srCsId != null">
+        sr_cs_id,
+      </if>
+      <if test="srStatus != null">
+        sr_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="srId != null">
+        #{srId,jdbcType=INTEGER},
+      </if>
+      <if test="srCoursename != null">
+        #{srCoursename,jdbcType=VARCHAR},
+      </if>
+      <if test="srCourseteacher != null">
+        #{srCourseteacher,jdbcType=VARCHAR},
+      </if>
+      <if test="srCoursetype != null">
+        #{srCoursetype,jdbcType=INTEGER},
+      </if>
+      <if test="srCourseprice != null">
+        #{srCourseprice,jdbcType=DOUBLE},
+      </if>
+      <if test="srCourseabstract != null">
+        #{srCourseabstract,jdbcType=VARCHAR},
+      </if>
+      <if test="srStuId != null">
+        #{srStuId,jdbcType=INTEGER},
+      </if>
+      <if test="srCsId != null">
+        #{srCsId,jdbcType=INTEGER},
+      </if>
+      <if test="srStatus != null">
+        #{srStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bean.Shopcar">
+    update shopcar
+    <set>
+      <if test="srCoursename != null">
+        sr_coursename = #{srCoursename,jdbcType=VARCHAR},
+      </if>
+      <if test="srCourseteacher != null">
+        sr_courseteacher = #{srCourseteacher,jdbcType=VARCHAR},
+      </if>
+      <if test="srCoursetype != null">
+        sr_coursetype = #{srCoursetype,jdbcType=INTEGER},
+      </if>
+      <if test="srCourseprice != null">
+        sr_courseprice = #{srCourseprice,jdbcType=DOUBLE},
+      </if>
+      <if test="srCourseabstract != null">
+        sr_courseabstract = #{srCourseabstract,jdbcType=VARCHAR},
+      </if>
+      <if test="srStuId != null">
+        sr_stu_id = #{srStuId,jdbcType=INTEGER},
+      </if>
+      <if test="srCsId != null">
+        sr_cs_id = #{srCsId,jdbcType=INTEGER},
+      </if>
+      <if test="srStatus != null">
+        sr_status = #{srStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where sr_id = #{srId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bean.Shopcar">
+    update shopcar
+    set sr_coursename = #{srCoursename,jdbcType=VARCHAR},
+      sr_courseteacher = #{srCourseteacher,jdbcType=VARCHAR},
+      sr_coursetype = #{srCoursetype,jdbcType=INTEGER},
+      sr_courseprice = #{srCourseprice,jdbcType=DOUBLE},
+      sr_courseabstract = #{srCourseabstract,jdbcType=VARCHAR},
+      sr_stu_id = #{srStuId,jdbcType=INTEGER},
+      sr_cs_id = #{srCsId,jdbcType=INTEGER},
+      sr_status = #{srStatus,jdbcType=INTEGER}
+    where sr_id = #{srId,jdbcType=INTEGER}
+  </update>
+</mapper>

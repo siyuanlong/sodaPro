@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.EmployMapper">
+  <resultMap id="BaseResultMap" type="com.bean.Employ">
+    <result column="ey_id" jdbcType="INTEGER" property="eyId" />
+    <result column="ey_job" jdbcType="VARCHAR" property="eyJob" />
+    <result column="ey_endtime" jdbcType="DATE" property="eyEndtime" />
+    <result column="ey_number" jdbcType="INTEGER" property="eyNumber" />
+    <result column="ey_remark" jdbcType="VARCHAR" property="eyRemark" />
+    <result column="ey_status" jdbcType="INTEGER" property="eyStatus" />
+    <result column="ey_other1" jdbcType="VARCHAR" property="eyOther1" />
+    <result column="ey_other2" jdbcType="VARCHAR" property="eyOther2" />
+  </resultMap>
+  <insert id="insert" parameterType="com.bean.Employ">
+    insert into employ (ey_id, ey_job, ey_endtime, 
+      ey_number, ey_remark, ey_status, 
+      ey_other1, ey_other2)
+    values (#{eyId,jdbcType=INTEGER}, #{eyJob,jdbcType=VARCHAR}, #{eyEndtime,jdbcType=DATE}, 
+      #{eyNumber,jdbcType=INTEGER}, #{eyRemark,jdbcType=VARCHAR}, #{eyStatus,jdbcType=INTEGER}, 
+      #{eyOther1,jdbcType=VARCHAR}, #{eyOther2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bean.Employ">
+    insert into employ
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="eyId != null">
+        ey_id,
+      </if>
+      <if test="eyJob != null">
+        ey_job,
+      </if>
+      <if test="eyEndtime != null">
+        ey_endtime,
+      </if>
+      <if test="eyNumber != null">
+        ey_number,
+      </if>
+      <if test="eyRemark != null">
+        ey_remark,
+      </if>
+      <if test="eyStatus != null">
+        ey_status,
+      </if>
+      <if test="eyOther1 != null">
+        ey_other1,
+      </if>
+      <if test="eyOther2 != null">
+        ey_other2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="eyId != null">
+        #{eyId,jdbcType=INTEGER},
+      </if>
+      <if test="eyJob != null">
+        #{eyJob,jdbcType=VARCHAR},
+      </if>
+      <if test="eyEndtime != null">
+        #{eyEndtime,jdbcType=DATE},
+      </if>
+      <if test="eyNumber != null">
+        #{eyNumber,jdbcType=INTEGER},
+      </if>
+      <if test="eyRemark != null">
+        #{eyRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="eyStatus != null">
+        #{eyStatus,jdbcType=INTEGER},
+      </if>
+      <if test="eyOther1 != null">
+        #{eyOther1,jdbcType=VARCHAR},
+      </if>
+      <if test="eyOther2 != null">
+        #{eyOther2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.IndustryMapper">
+  <resultMap id="BaseResultMap" type="com.bean.Industry">
+    <id column="iy_id" jdbcType="INTEGER" property="iyId" />
+    <result column="iy_title" jdbcType="VARCHAR" property="iyTitle" />
+    <result column="iy_content" jdbcType="VARCHAR" property="iyContent" />
+    <result column="iy_userId" jdbcType="INTEGER" property="iyUserid" />
+    <result column="iy_state" jdbcType="INTEGER" property="iyState" />
+    <result column="iy_updatetime" jdbcType="DATE" property="iyUpdatetime" />
+    <result column="iy_status" jdbcType="INTEGER" property="iyStatus" />
+    <result column="iy_other1" jdbcType="VARCHAR" property="iyOther1" />
+    <result column="iy_other2" jdbcType="VARCHAR" property="iyOther2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    iy_id, iy_title, iy_content, iy_userId, iy_state, iy_updatetime, iy_status, iy_other1, 
+    iy_other2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from industry
+    where iy_id = #{iyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from industry
+    where iy_id = #{iyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bean.Industry">
+    insert into industry (iy_id, iy_title, iy_content, 
+      iy_userId, iy_state, iy_updatetime, 
+      iy_status, iy_other1, iy_other2
+      )
+    values (#{iyId,jdbcType=INTEGER}, #{iyTitle,jdbcType=VARCHAR}, #{iyContent,jdbcType=VARCHAR}, 
+      #{iyUserid,jdbcType=INTEGER}, #{iyState,jdbcType=INTEGER}, #{iyUpdatetime,jdbcType=DATE}, 
+      #{iyStatus,jdbcType=INTEGER}, #{iyOther1,jdbcType=VARCHAR}, #{iyOther2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bean.Industry">
+    insert into industry
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="iyId != null">
+        iy_id,
+      </if>
+      <if test="iyTitle != null">
+        iy_title,
+      </if>
+      <if test="iyContent != null">
+        iy_content,
+      </if>
+      <if test="iyUserid != null">
+        iy_userId,
+      </if>
+      <if test="iyState != null">
+        iy_state,
+      </if>
+      <if test="iyUpdatetime != null">
+        iy_updatetime,
+      </if>
+      <if test="iyStatus != null">
+        iy_status,
+      </if>
+      <if test="iyOther1 != null">
+        iy_other1,
+      </if>
+      <if test="iyOther2 != null">
+        iy_other2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="iyId != null">
+        #{iyId,jdbcType=INTEGER},
+      </if>
+      <if test="iyTitle != null">
+        #{iyTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="iyContent != null">
+        #{iyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="iyUserid != null">
+        #{iyUserid,jdbcType=INTEGER},
+      </if>
+      <if test="iyState != null">
+        #{iyState,jdbcType=INTEGER},
+      </if>
+      <if test="iyUpdatetime != null">
+        #{iyUpdatetime,jdbcType=DATE},
+      </if>
+      <if test="iyStatus != null">
+        #{iyStatus,jdbcType=INTEGER},
+      </if>
+      <if test="iyOther1 != null">
+        #{iyOther1,jdbcType=VARCHAR},
+      </if>
+      <if test="iyOther2 != null">
+        #{iyOther2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bean.Industry">
+    update industry
+    <set>
+      <if test="iyTitle != null">
+        iy_title = #{iyTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="iyContent != null">
+        iy_content = #{iyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="iyUserid != null">
+        iy_userId = #{iyUserid,jdbcType=INTEGER},
+      </if>
+      <if test="iyState != null">
+        iy_state = #{iyState,jdbcType=INTEGER},
+      </if>
+      <if test="iyUpdatetime != null">
+        iy_updatetime = #{iyUpdatetime,jdbcType=DATE},
+      </if>
+      <if test="iyStatus != null">
+        iy_status = #{iyStatus,jdbcType=INTEGER},
+      </if>
+      <if test="iyOther1 != null">
+        iy_other1 = #{iyOther1,jdbcType=VARCHAR},
+      </if>
+      <if test="iyOther2 != null">
+        iy_other2 = #{iyOther2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where iy_id = #{iyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bean.Industry">
+    update industry
+    set iy_title = #{iyTitle,jdbcType=VARCHAR},
+      iy_content = #{iyContent,jdbcType=VARCHAR},
+      iy_userId = #{iyUserid,jdbcType=INTEGER},
+      iy_state = #{iyState,jdbcType=INTEGER},
+      iy_updatetime = #{iyUpdatetime,jdbcType=DATE},
+      iy_status = #{iyStatus,jdbcType=INTEGER},
+      iy_other1 = #{iyOther1,jdbcType=VARCHAR},
+      iy_other2 = #{iyOther2,jdbcType=VARCHAR}
+    where iy_id = #{iyId,jdbcType=INTEGER}
+  </update>
+</mapper>

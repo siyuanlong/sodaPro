@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.InformationMapper">
+  <resultMap id="BaseResultMap" type="com.bean.Information">
+    <id column="in_id" jdbcType="INTEGER" property="inId" />
+    <result column="in_title" jdbcType="VARCHAR" property="inTitle" />
+    <result column="in_content" jdbcType="VARCHAR" property="inContent" />
+    <result column="in_state" jdbcType="INTEGER" property="inState" />
+    <result column="in_updatetime" jdbcType="TIMESTAMP" property="inUpdatetime" />
+    <result column="in_userId" jdbcType="INTEGER" property="inUserid" />
+    <result column="in_status" jdbcType="INTEGER" property="inStatus" />
+    <result column="in_other1" jdbcType="VARCHAR" property="inOther1" />
+    <result column="in_other2" jdbcType="VARCHAR" property="inOther2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    in_id, in_title, in_content, in_state, in_updatetime, in_userId, in_status, in_other1, 
+    in_other2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from information
+    where in_id = #{inId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from information
+    where in_id = #{inId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bean.Information">
+    insert into information (in_id, in_title, in_content, 
+      in_state, in_updatetime, in_userId, 
+      in_status, in_other1, in_other2
+      )
+    values (#{inId,jdbcType=INTEGER}, #{inTitle,jdbcType=VARCHAR}, #{inContent,jdbcType=VARCHAR}, 
+      #{inState,jdbcType=INTEGER}, #{inUpdatetime,jdbcType=TIMESTAMP}, #{inUserid,jdbcType=INTEGER}, 
+      #{inStatus,jdbcType=INTEGER}, #{inOther1,jdbcType=VARCHAR}, #{inOther2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bean.Information">
+    insert into information
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="inId != null">
+        in_id,
+      </if>
+      <if test="inTitle != null">
+        in_title,
+      </if>
+      <if test="inContent != null">
+        in_content,
+      </if>
+      <if test="inState != null">
+        in_state,
+      </if>
+      <if test="inUpdatetime != null">
+        in_updatetime,
+      </if>
+      <if test="inUserid != null">
+        in_userId,
+      </if>
+      <if test="inStatus != null">
+        in_status,
+      </if>
+      <if test="inOther1 != null">
+        in_other1,
+      </if>
+      <if test="inOther2 != null">
+        in_other2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="inId != null">
+        #{inId,jdbcType=INTEGER},
+      </if>
+      <if test="inTitle != null">
+        #{inTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="inContent != null">
+        #{inContent,jdbcType=VARCHAR},
+      </if>
+      <if test="inState != null">
+        #{inState,jdbcType=INTEGER},
+      </if>
+      <if test="inUpdatetime != null">
+        #{inUpdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inUserid != null">
+        #{inUserid,jdbcType=INTEGER},
+      </if>
+      <if test="inStatus != null">
+        #{inStatus,jdbcType=INTEGER},
+      </if>
+      <if test="inOther1 != null">
+        #{inOther1,jdbcType=VARCHAR},
+      </if>
+      <if test="inOther2 != null">
+        #{inOther2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bean.Information">
+    update information
+    <set>
+      <if test="inTitle != null">
+        in_title = #{inTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="inContent != null">
+        in_content = #{inContent,jdbcType=VARCHAR},
+      </if>
+      <if test="inState != null">
+        in_state = #{inState,jdbcType=INTEGER},
+      </if>
+      <if test="inUpdatetime != null">
+        in_updatetime = #{inUpdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inUserid != null">
+        in_userId = #{inUserid,jdbcType=INTEGER},
+      </if>
+      <if test="inStatus != null">
+        in_status = #{inStatus,jdbcType=INTEGER},
+      </if>
+      <if test="inOther1 != null">
+        in_other1 = #{inOther1,jdbcType=VARCHAR},
+      </if>
+      <if test="inOther2 != null">
+        in_other2 = #{inOther2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where in_id = #{inId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bean.Information">
+    update information
+    set in_title = #{inTitle,jdbcType=VARCHAR},
+      in_content = #{inContent,jdbcType=VARCHAR},
+      in_state = #{inState,jdbcType=INTEGER},
+      in_updatetime = #{inUpdatetime,jdbcType=TIMESTAMP},
+      in_userId = #{inUserid,jdbcType=INTEGER},
+      in_status = #{inStatus,jdbcType=INTEGER},
+      in_other1 = #{inOther1,jdbcType=VARCHAR},
+      in_other2 = #{inOther2,jdbcType=VARCHAR}
+    where in_id = #{inId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.NewsMapper">
+  <resultMap id="BaseResultMap" type="com.bean.News">
+    <id column="ns_id" jdbcType="INTEGER" property="nsId" />
+    <result column="ns_title" jdbcType="VARCHAR" property="nsTitle" />
+    <result column="ns_content" jdbcType="VARCHAR" property="nsContent" />
+    <result column="ns_number" jdbcType="INTEGER" property="nsNumber" />
+    <result column="ns_showtime" jdbcType="TIMESTAMP" property="nsShowtime" />
+    <result column="ns_state" jdbcType="INTEGER" property="nsState" />
+    <result column="ns_userId" jdbcType="INTEGER" property="nsUserid" />
+    <result column="ns_status" jdbcType="INTEGER" property="nsStatus" />
+    <result column="ns_other1" jdbcType="VARCHAR" property="nsOther1" />
+    <result column="ns_other2" jdbcType="VARCHAR" property="nsOther2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ns_id, ns_title, ns_content, ns_number, ns_showtime, ns_state, ns_userId, ns_status, 
+    ns_other1, ns_other2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from news
+    where ns_id = #{nsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from news
+    where ns_id = #{nsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bean.News">
+    insert into news (ns_id, ns_title, ns_content, 
+      ns_number, ns_showtime, ns_state, 
+      ns_userId, ns_status, ns_other1, 
+      ns_other2)
+    values (#{nsId,jdbcType=INTEGER}, #{nsTitle,jdbcType=VARCHAR}, #{nsContent,jdbcType=VARCHAR}, 
+      #{nsNumber,jdbcType=INTEGER}, #{nsShowtime,jdbcType=TIMESTAMP}, #{nsState,jdbcType=INTEGER}, 
+      #{nsUserid,jdbcType=INTEGER}, #{nsStatus,jdbcType=INTEGER}, #{nsOther1,jdbcType=VARCHAR}, 
+      #{nsOther2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bean.News">
+    insert into news
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="nsId != null">
+        ns_id,
+      </if>
+      <if test="nsTitle != null">
+        ns_title,
+      </if>
+      <if test="nsContent != null">
+        ns_content,
+      </if>
+      <if test="nsNumber != null">
+        ns_number,
+      </if>
+      <if test="nsShowtime != null">
+        ns_showtime,
+      </if>
+      <if test="nsState != null">
+        ns_state,
+      </if>
+      <if test="nsUserid != null">
+        ns_userId,
+      </if>
+      <if test="nsStatus != null">
+        ns_status,
+      </if>
+      <if test="nsOther1 != null">
+        ns_other1,
+      </if>
+      <if test="nsOther2 != null">
+        ns_other2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="nsId != null">
+        #{nsId,jdbcType=INTEGER},
+      </if>
+      <if test="nsTitle != null">
+        #{nsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="nsContent != null">
+        #{nsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="nsNumber != null">
+        #{nsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="nsShowtime != null">
+        #{nsShowtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nsState != null">
+        #{nsState,jdbcType=INTEGER},
+      </if>
+      <if test="nsUserid != null">
+        #{nsUserid,jdbcType=INTEGER},
+      </if>
+      <if test="nsStatus != null">
+        #{nsStatus,jdbcType=INTEGER},
+      </if>
+      <if test="nsOther1 != null">
+        #{nsOther1,jdbcType=VARCHAR},
+      </if>
+      <if test="nsOther2 != null">
+        #{nsOther2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bean.News">
+    update news
+    <set>
+      <if test="nsTitle != null">
+        ns_title = #{nsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="nsContent != null">
+        ns_content = #{nsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="nsNumber != null">
+        ns_number = #{nsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="nsShowtime != null">
+        ns_showtime = #{nsShowtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nsState != null">
+        ns_state = #{nsState,jdbcType=INTEGER},
+      </if>
+      <if test="nsUserid != null">
+        ns_userId = #{nsUserid,jdbcType=INTEGER},
+      </if>
+      <if test="nsStatus != null">
+        ns_status = #{nsStatus,jdbcType=INTEGER},
+      </if>
+      <if test="nsOther1 != null">
+        ns_other1 = #{nsOther1,jdbcType=VARCHAR},
+      </if>
+      <if test="nsOther2 != null">
+        ns_other2 = #{nsOther2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ns_id = #{nsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bean.News">
+    update news
+    set ns_title = #{nsTitle,jdbcType=VARCHAR},
+      ns_content = #{nsContent,jdbcType=VARCHAR},
+      ns_number = #{nsNumber,jdbcType=INTEGER},
+      ns_showtime = #{nsShowtime,jdbcType=TIMESTAMP},
+      ns_state = #{nsState,jdbcType=INTEGER},
+      ns_userId = #{nsUserid,jdbcType=INTEGER},
+      ns_status = #{nsStatus,jdbcType=INTEGER},
+      ns_other1 = #{nsOther1,jdbcType=VARCHAR},
+      ns_other2 = #{nsOther2,jdbcType=VARCHAR}
+    where ns_id = #{nsId,jdbcType=INTEGER}
+  </update>
+</mapper>
